@@ -1,0 +1,22 @@
+{
+  "name": "g6-package-publish",
+  "version": "1.0.3",
+  "description": "This is my first package npm. You can use it!!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pratiyushray/G6_WEBDEV.git"
+  },
+  "author": "Pratiyush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pratiyushray/G6_WEBDEV/issues"
+  },
+  "homepage": "https://github.com/pratiyushray/G6_WEBDEV#readme",
+  "dependencies": {
+    "@changesets/cli": "^2.29.5"
+  }
+}
