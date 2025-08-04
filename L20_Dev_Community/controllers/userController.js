@@ -1,38 +1,38 @@
-const mongoose = require("mongoose");
-const User = require("../models/UserModel");
+const User = require("../models/userModel");
 
-
-const registerUser = async (req,res) => {
+const registerUser = async (req,res) =>{
     const { firstName, lastName, emailId, password} = req.body;
 
-    // WE WILL CHECK VALIDATION
+    //VALIDATION
 
-    if(!firstName || !lastName || !emailId || !password){
-        res.status(400).send({message: " PLEASE ADD ALL FIELDS"})
+    if (!firstName || !emailId || !password){
+        res.status(400).send({message:"Please Add all mandatory fields"});
     }
 
-    const alreadyUser = await User.findOne({emailId});
-    // console.log(alreadyUser);
-
-    if(alreadyUser){
-        res.status(400).send({message: "User Already Registered"});
+    //Check the user existing already in db or not
+    const userExists = await User.findOne({emailId});
+    if (userExists){
+        res.status(400).json({message: "Already Exist"});
     }
 
-    // MAPPING OBJECT => MODEL
+    //CREATE USER IN YOUR DATABASE
 
-    const newUser = new User({
+    const newUser = await User.create({
         firstName,
         lastName,
         emailId,
         password
-    })
+    });
+
     await newUser.save();
-    res.status(201).json({message:"USER CREATED SUCCESSFULLY"});
+    
+    res.status(201).json("USER CREATED",{newUser});
+    
 }
 
 
-module.exports = { registerUser };
-
-// const loginUser = () => { 
+// const loginUser = () => {
 
 // }
+
+module.exports = { registerUser }
