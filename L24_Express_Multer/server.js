@@ -24,6 +24,13 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
     return res.redirect("/home")
 })
 
+app.post('/profile2', upload.single('avatar'), function (req, res, next) {
+    console.log(req.body);
+    console.log(req.file)
+    return res.redirect("/home")
+})
+
+
 
 /////// TEMPLATE ENGINE : HANDLEBARS
 var hbs = require('hbs');
